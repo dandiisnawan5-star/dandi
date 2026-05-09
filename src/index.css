@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  
+  --color-brand: #2D312E;
+  --color-accent: #9FB8AD; /* Soft Sage Green */
+  --color-surface: #F9F9F7; /* Warm Bone White */
+  --color-muted: #7F8C85;
+}
+
+@layer base {
+  html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-surface text-brand font-sans antialiased selection:bg-accent/30 selection:text-brand transition-colors duration-500;
+}
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tighter font-bold;
+  }
+}
+
+.grain-overlay {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwAQMAAAB9S08iAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAA1JREFUKM9jYBgFgwEAAAG8AAGm5SInAAAAAElFTkSuQmCC') repeat;
+  animation: bg-grain 0.5s infinite;
+  opacity: .02;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+@keyframes bg-grain {
+  0%, 100% { transform:translate(0, 0) }
+  10% { transform:translate(-5%, -10%) }
+  30% { transform:translate(7%, -25%) }
+  50% { transform:translate(-15%, 10%) }
+  70% { transform:translate(0, 15%) }
+  90% { transform:translate(-10%, 10%) }
+}
+
+.text-reveal {
+  @apply overflow-hidden block relative;
+}
+
+.glass {
+  @apply backdrop-blur-2xl bg-white/40 border border-black/[0.02];
+}
